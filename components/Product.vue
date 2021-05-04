@@ -7,7 +7,7 @@
         </div>
         <h3 class="text-center text-2xl text-blue-900 font-bold">{{product.productName}}</h3>
         <p class="text-center text-lg font-bold">${{product.price}}</p>
-        <button class="mb-2 mt-5 ml-14 bg-green-200 px-6 py-1 rounded">Add to cart</button>
+        <button @click="addToCart(product)" class="mb-2 mt-5 ml-14 bg-green-200 px-6 py-1 rounded">Add to cart</button>
      </div> 
   </div>
 
@@ -17,13 +17,18 @@
 import {mapGetters} from "vuex"
 
 export default {
-    name: "Product",
-
-    computed: {
-    ...mapGetters([
-      'products'
-    ])
-  }
+  name: "Product",
+  computed: {
+    ...mapGetters(['products'])
+  },
+  methods: {
+    addToCart(product){
+      this.$store.dispatch('addToCart', {
+        product: product,
+        quantity: 1
+      })
+    }
+  },  
 }
 </script>
 

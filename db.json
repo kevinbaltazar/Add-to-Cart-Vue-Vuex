@@ -2,27 +2,38 @@
     "products": [
         {
             "id": 0,
-            "productName": "example product",
+            "productName": "Big Mac",
             "price": 300,
-            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg"
+            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg",
+            "description": "maganda to maraming ilaw bilhin nyo na"
         },
         {
             "id": 1,
-            "productName": "example product",
-            "price": 300,
-            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg"
+            "productName": "Yum burger Mac",
+            "price": 5220,
+            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg",
+            "description": "maganda to maraming ilaw bilhin nyo na"
         },
         {
             "id": 2,
-            "productName": "example product",
-            "price": 300,
-            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg"
+            "productName": "Jabe Burger Mac",
+            "price": 3200,
+            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg",
+            "description": "maganda to maraming ilaw bilhin nyo na"
         },
         {
             "id": 3,
-            "productName": "example product",
-            "price": 300,
-            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg"
+            "productName": "Mac Float",
+            "price": 8020,
+            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg",
+            "description": "maganda to maraming ilaw bilhin nyo na"
+        },
+        {
+            "id": 4,
+            "productName": "Mac Matte",
+            "price": 2034,
+            "img": "https://www.apple.com/newsroom/images/product/os/macos/standard/apple_macos-bigsur_redesignedapps_06222020.jpg.landing-big_2x.jpg",
+            "description": "maganda to maraming ilaw bilhin nyo na"
         }
     ]
 }
