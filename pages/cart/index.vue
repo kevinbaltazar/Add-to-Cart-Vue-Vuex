@@ -1,10 +1,15 @@
 <template>
-  <div>
+    <div>
         <div>
             <h3 class="">Total Price: <span class="text-lg text-red-500">${{cartTotalPrice}}</span></h3>
         </div>
         <div>
           <button v-show="cart.length != 0" @click="removeAllCart()" class="absolute right-10 top-5 p-3 bg-red-700 text-white rounded-lg">Remove All!</button>
+        </div>
+        <div v-show="cart.length == 0">
+            <span class="text-2xl">
+                No item in cart... bumili kana!
+            </span>
         </div>
         <div class="w-full mt-5 p-5 shadow-md flex flex-row" v-for="item in cart" :key="item.id">
             <div class="">
@@ -21,7 +26,13 @@
                     </p>
                 </div>
             </div>
-            <button @click="removeItemFromCart(item.product.product.id)" class="absolute right-10 bg-red-400 p-2 rounded-lg">Remove</button>
+            <div class="absolute right-32 flex flex-row space-x-5 -mt-1 ">
+                <button @click="cartItemQuantity(1,item.product.product.id)" class="text-7xl right-10 focus:outline-none">+</button>
+                <button @click="cartItemQuantity(-1,item.product.product.id)" class="text-8xl right-10 -mt-3 focus:outline-none">-</button>
+            </div>
+            <div class="absolute right-10 mt-4">
+                <button @click="removeItemFromCart(item.product.product.id)" class="text-white bg-red-400 p-2 rounded-lg hover:bg-red-700 focus:outline-none">Remove</button>
+            </div>
         </div>
   </div>
 </template>
@@ -29,7 +40,6 @@
 <script>
 import {mapGetters} from 'vuex'
 export default {
-
     computed: {
         ...mapGetters(['cart','cartTotalPrice'])
     },
@@ -39,6 +49,12 @@ export default {
         },
         removeAllCart(){
             this.$store.dispatch('removeAllItemInCart')
+        },
+        toggleClose(toggle){
+            this.quantityToggle = toggle
+        },
+        cartItemQuantity(value,id){
+            this.$store.dispatch('itemQuantity',{value,id})
         }
     }
 }

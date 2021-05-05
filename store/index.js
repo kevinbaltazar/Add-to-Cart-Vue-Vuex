@@ -2,7 +2,6 @@ import axios from "axios";
 
 const baseURL = "http://localhost:4000/products"
 
-
 export const state = () => ({
     product: [],
     cart: []
@@ -13,27 +12,36 @@ export const mutations = {
         state.product = payload
     },
     ADD_CART(state,payload){
-
         let productIncart = state.cart.find(item => {
             return item.product.product.id == payload.product.product.id
         }) 
-        
         if(productIncart){
             productIncart.product.quantity += payload.product.quantity
             return
         }
-
         state.cart.push(payload)  
-   
     },
     REMOVE_ITEM_INTO_CART(state,payload){
         state.cart = state.cart.filter(item => 
             item.product.product.id != payload
         )
     },
+    SET_QUANTITY_ITEM_IN_CART(state,payload){
+        let productIncart = state.cart.find(item => {
+            return item.product.product.id == payload.id
+        }) 
+        if(productIncart.product.quantity == 1 && payload.value == -1){
+            return
+        }  
+        else{
+            if(productIncart){
+                productIncart.product.quantity += payload.value
+            } 
+        } 
+    },
     REMOVE_ALL_ITEM_IN_CART(state){
         state.cart = []
-    }
+    },
 }
 
 export const actions = {
@@ -49,6 +57,9 @@ export const actions = {
     },
     removeAllItemInCart({commit}){
         commit('REMOVE_ALL_ITEM_IN_CART')
+    },
+    itemQuantity({commit},quantity){
+        commit('SET_QUANTITY_ITEM_IN_CART', quantity)
     }
 }
 
@@ -63,5 +74,4 @@ export const getters = {
         });
         return total;
     }
-    
 }
