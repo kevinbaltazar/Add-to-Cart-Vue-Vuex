@@ -1,16 +1,14 @@
 <template>
   <div>
-    <NuxtLink  to="/">Home</NuxtLink>
-    <NuxtLink to="/cart">Cart<span>({{length}})</span> </NuxtLink><Nuxt />
+    <Nav />
+    <Nuxt />
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 export default {
-    computed: {
-    ...mapGetters(['length'])
-  },
+
 }
 </script>
 
@@ -68,13 +66,5 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
-}
-
-a.nuxt-link-active {
-  font-weight: bold;
-}
-/* exact link will show the primary color for only the exact matching link */
-a.nuxt-link-exact-active {
-  color: #00c58e;
 }
 </style>

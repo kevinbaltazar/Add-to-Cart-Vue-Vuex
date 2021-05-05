@@ -1,14 +1,14 @@
 <template>
     <div>
         <div>
-            <h3 class="">Total Price: <span class="text-lg text-red-500">${{cartTotalPrice}}</span></h3>
+            <h3 class="text-center text-2xl">Total Price: <span class="text-red-500 text-2xl">${{cartTotalPrice}}</span></h3>
         </div>
         <div>
           <button v-show="cart.length != 0" @click="removeAllCart()" class="absolute right-10 top-5 p-3 bg-red-700 text-white rounded-lg">Remove All!</button>
         </div>
         <div v-show="cart.length == 0">
-            <span class="text-2xl">
-                No item in cart... bumili kana!
+            <span class="">
+                <i>No item in cart...</i>
             </span>
         </div>
         <div class="w-full mt-5 p-5 shadow-md flex flex-row" v-for="item in cart" :key="item.id">

@@ -1,6 +1,7 @@
 <template>
     <div class="w-full h-screen flex justify-center item-center -mt-6 p-20">
-        <div class="shadow-lg w-full p-10">
+        <div class="relative shadow-lg w-full p-10">
+            <button @click="addToCart(product)" class="absolute right-10 px-7 py-4 bg-green-400 rounded-lg focus:outline-none">Add to Cart</button>
             <h3 class="text-3xl">Specifications</h3>
             <div class="mt-5 flex flex-row">
                 <img class="w-96" :src="product.img" alt="">
@@ -30,7 +31,15 @@ export default {
     },
     mounted() {
         this.product = this.getProduct(this.$route.params.id)
-    }
+    },
+    methods: {
+        addToCart(product){
+        this.$store.dispatch('addToCart', {
+            product: product,
+            quantity: 1
+        })
+        },
+    },
 }
 </script>
 
