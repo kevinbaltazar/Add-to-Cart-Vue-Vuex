@@ -73,5 +73,13 @@ export const getters = {
             total += element.product.product.price * element.product.quantity
         });
         return total;
+    },
+    getProduct: (state) => {
+        return (id) => {
+            let product = state.product.find(item => {
+                return item.id == id
+            })
+            return product           
+        }
     }
 }
