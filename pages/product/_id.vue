@@ -4,7 +4,7 @@
             <button @click="addToCart(product)" class="absolute right-10 px-7 py-4 bg-green-400 rounded-lg focus:outline-none">Add to Cart</button>
             <h3 class="text-3xl">Specifications</h3>
             <div class="mt-5 flex flex-row">
-                <img class="w-96" :src="product.img" alt="">
+                <img class="w-96 mr-5 rounded-lg" :src="product.img" alt="">
                 <div class="flex flex-col">
                     <h3 class="text-3xl font-semibold mt-5">{{product.productName}}</h3>
                     <i>{{product.description}}</i>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     data(){
         return {
@@ -33,12 +33,7 @@ export default {
         this.product = this.getProduct(this.$route.params.id)
     },
     methods: {
-        addToCart(product){
-        this.$store.dispatch('addToCart', {
-            product: product,
-            quantity: 1
-        })
-        },
+        ...mapActions(['addToCart'])
     },
 }
 </script>

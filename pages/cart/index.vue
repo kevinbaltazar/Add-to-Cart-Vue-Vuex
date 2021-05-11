@@ -13,49 +13,52 @@
         </div>
         <div class="w-full mt-5 p-5 shadow-md flex flex-row" v-for="item in cart" :key="item.id">
             <div class="">
-                <img class="w-36" :src="item.product.product.img" alt="sd">
+                <img class="w-36 rounded-lg" :src="item.product.img" alt="NO PICTURE">
             </div>
-            <div class="">
+            <div class="ml-6">
                 <div class="">
-                    <span class="text-2xl">{{ item.product.quantity }} x {{item.product.product.productName}}  <span class="text-lg text-red-500">${{item.product.product.price}}</span> </span>
+                    <span class="text-2xl">{{ item.quantity }} x {{item.product.productName}}  <span class="text-lg text-red-500">${{item.product.price}}</span> </span>
                 </div>
                 <div>
                     <i class="text-gray-500">Desciption</i>
                     <p>
-                        {{item.product.product.description}}
+                        {{item.product.description}}
                     </p>
                 </div>
             </div>
             <div class="absolute right-32 flex flex-row space-x-5 -mt-1 ">
-                <button @click="cartItemQuantity(1,item.product.product.id)" class="text-7xl right-10 focus:outline-none">+</button>
-                <button @click="cartItemQuantity(-1,item.product.product.id)" class="text-8xl right-10 -mt-3 focus:outline-none">-</button>
+                <button @click="itemQuantity({ id: item.product.id, quantity: 1 })" class="text-7xl right-10 focus:outline-none">+</button>
+                <button @click="itemQuantity({ id: item.product.id, quantity: -1 })" class="text-8xl right-10 -mt-3 focus:outline-none">-</button>
             </div>
             <div class="absolute right-10 mt-4">
-                <button @click="removeItemFromCart(item.product.product.id)" class="text-white bg-red-400 p-2 rounded-lg hover:bg-red-700 focus:outline-none">Remove</button>
+                <button @click="removeItemInCart({id: item.product.id})" class="text-white bg-red-400 p-2 rounded-lg hover:bg-red-700 focus:outline-none">Remove</button>
             </div>
-        </div>
+        </div> 
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapState, mapActions} from 'vuex'
 export default {
     computed: {
-        ...mapGetters(['cart','cartTotalPrice'])
+        ...mapState(['cart']),
+        ...mapGetters(['cartTotalPrice'])
     },
     methods: {
-        removeItemFromCart(id){
-            this.$store.dispatch('removeItemInCart', id)
-        },
+        // removeItemFromCart(id){
+        //     this.$store.dispatch('removeItemInCart', id)
+        // },
         removeAllCart(){
             this.$store.dispatch('removeAllItemInCart')
         },
         toggleClose(toggle){
             this.quantityToggle = toggle
         },
-        cartItemQuantity(value,id){
-            this.$store.dispatch('itemQuantity',{value,id})
-        }
+        // cartItemQuantity(value,id){
+        //     this.$store.dispatch('itemQuantity',{value,id})
+        // },
+        ...mapActions(['removeItemInCart']),
+        ...mapActions(['itemQuantity'])
     }
 }
 </script>

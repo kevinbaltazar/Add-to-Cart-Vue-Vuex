@@ -1,7 +1,7 @@
 <template>
 
   <div class="w-full h-auto p-10 flex justify-center flex flex-wrap content-center ">
-     <div v-for="product in products" :key="product.id" class="w-64 border p-2 shadow-lg rounded-xl m-5" style="height: 300px">
+     <div v-for="product in product" :key="product.id" class="w-64 border p-2 shadow-lg rounded-xl m-5" style="height: 300px">
         <NuxtLink :to="'/product/'+product.id">
         <div class="cursor-pointer">
           <div class="flex justify-center mb-2 mt-2">
@@ -18,20 +18,15 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+import {mapGetters, mapState, mapActions} from "vuex"
 
 export default {
   name: "Product",
   computed: {
-    ...mapGetters(['products'])
+    ...mapState(['product'])
   },
   methods: {
-    addToCart(product){
-      this.$store.dispatch('addToCart', {
-        product: product,
-        quantity: 1
-      })
-    },
+    ...mapActions(['addToCart'])
   },  
 }
 </script>

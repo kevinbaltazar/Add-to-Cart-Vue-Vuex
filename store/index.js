@@ -13,30 +13,28 @@ export const mutations = {
     },
     ADD_CART(state,payload){
         let productIncart = state.cart.find(item => {
-            return item.product.product.id == payload.product.product.id
+            return item.product.id == payload.product.id
         }) 
         if(productIncart){
-            productIncart.product.quantity += payload.product.quantity
+            productIncart.quantity += payload.quantity
             return
         }
         state.cart.push(payload)  
     },
     REMOVE_ITEM_INTO_CART(state,payload){
         state.cart = state.cart.filter(item => 
-            item.product.product.id != payload
+            item.product.id != payload.id
         )
     },
     SET_QUANTITY_ITEM_IN_CART(state,payload){
         let productIncart = state.cart.find(item => {
-            return item.product.product.id == payload.id
+            return item.product.id == payload.id
         }) 
-        if(productIncart.product.quantity == 1 && payload.value == -1){
+        if(productIncart.quantity == 1 && payload.quantity == -1){
             return
         }  
         else{
-            if(productIncart){
-                productIncart.product.quantity += payload.value
-            } 
+            productIncart.quantity += payload.quantity
         } 
     },
     REMOVE_ALL_ITEM_IN_CART(state){
@@ -50,27 +48,26 @@ export const actions = {
         commit('SET_PRODUCT', result.data)
     },
     addToCart({commit}, product){
-        commit('ADD_CART', {product})
+        const quantity = 1
+        commit('ADD_CART', {product,quantity})
     },
-    removeItemInCart({commit}, id){
-        commit('REMOVE_ITEM_INTO_CART', id)
+    removeItemInCart({commit}, payload){
+        commit('REMOVE_ITEM_INTO_CART', payload)
     },
     removeAllItemInCart({commit}){
         commit('REMOVE_ALL_ITEM_IN_CART')
     },
-    itemQuantity({commit},quantity){
-        commit('SET_QUANTITY_ITEM_IN_CART', quantity)
+    itemQuantity({commit},payload){
+        commit('SET_QUANTITY_ITEM_IN_CART', payload)
     }
 }
 
 export const getters = {
-    products: (state) => state.product,
-    cart: (state) => state.cart,
     length: (state) => state.cart.length,
     cartTotalPrice: (state) => {
         let total = 0;
-        state.cart.forEach(element => {
-            total += element.product.product.price * element.product.quantity
+        state.cart.forEach(item => {
+            total += item.product.price * item.quantity
         });
         return total;
     },

@@ -1,7 +1,9 @@
 <template>
   <div class="text-center mb-5 pt-5">
-    <NuxtLink class="text-2xl mr-3" to="/">Home</NuxtLink> |
-    <NuxtLink class="text-2xl ml-3" to="/cart">Cart<span>({{length}})</span> </NuxtLink>
+    <NuxtLink class="text-2xl mr-3" to="/">Home</NuxtLink>|
+    <NuxtLink class="text-2xl mx-3" to="/add-product">Add</NuxtLink>|
+    <NuxtLink class="text-2xl ml-3" to="/cart">Cart<span>({{length}})</span> </NuxtLink> 
+    
   </div>
 </template>
 
